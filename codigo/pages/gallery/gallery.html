@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oscar Website - gallery</title>
+
+  <link rel="stylesheet" href="../../styles/main.css" />
+</head>
+
+<body class="page-gallery">
+
+<header class="header">
+  <h1 class="site-title">Oscar Website</h1>
+
+  <div class="nav-wrap">
+    <div class="nav-line"></div>
+
+    <nav class="nav">
+      <a href="../../index.html">home</a>
+      <a href="../game/vgame.html">V.game</a>
+      <a class="active" href="gallery.html">gallery</a>
+    </nav>
+
+    <div class="nav-spacer"></div>
+  </div>
+</header>
+
+<main class="page page--flow">
+
+<section class="gallery">
+
+<header class="gallery__head">
+  <h2 class="gallery__title">Our memories</h2>
+  <p class="gallery__subtitle">I caught you being yourself</p>
+</header>
+
+<!-- 2 fotos principales -->
+<div class="gallery__featured">
+
+<figure class="shot">
+<img
+data-gallery
+src="../../assets/images/featured-1-full.png"
+data-full="../../assets/images/featured-1.jpg"
+alt="Foto principal 1"
+/>
+</figure>
+
+<figure class="shot">
+<img
+data-gallery
+src="../../assets/images/featured-2-full.png"
+data-full="../../assets/images/featured-2.jpg"
+alt="Foto principal 2"
+/>
+</figure>
+
+</div>
+
+<!-- GRID -->
+<div class="gallery__grid" id="galeria">
+
+<figure class="shot"><img data-gallery src="../../assets/images/g1.jpg" alt="Galería 1" /></figure>
+<figure class="shot"><img data-gallery src="../../assets/images/g2.jpg" alt="Galería 2" /></figure>
+<figure class="shot"><img data-gallery src="../../assets/images/g3.jpg" alt="Galería 3" /></figure>
+<figure class="shot"><img data-gallery src="../../assets/images/g4.jpg" alt="Galería 4" /></figure>
+<figure class="shot"><img data-gallery src="../../assets/images/g5.jpg" alt="Galería 5" /></figure>
+<figure class="shot"><img data-gallery src="../../assets/images/g6.jpg" alt="Galería 6" /></figure>
+
+</div>
+
+<!-- BOTON + -->
+<div class="gallery-add">
+  <button id="btnAddPhoto">+</button>
+  <input type="file" id="subirFoto" style="display:none">
+</div>
+
+<a class="back-home" href="../../index.html">Back to home</a>
+
+</section>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+<div class="lightbox__backdrop" data-lb-close></div>
+<div class="lightbox__panel" role="dialog" aria-modal="true">
+<button class="lightbox__close" data-lb-close>×</button>
+<button class="lightbox__nav lightbox__nav--prev" data-lb-prev>‹</button>
+<img class="lightbox__img" id="lightboxImg" alt="" />
+<button class="lightbox__nav lightbox__nav--next" data-lb-next>›</button>
+</div>
+</div>
+
+<script src="../../scripts/gallery.js"></script>
+
+</body>
+</html>

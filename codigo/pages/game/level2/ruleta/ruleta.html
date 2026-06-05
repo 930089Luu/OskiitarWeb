@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oscar Website - Ruleta</title>
+  <link rel="stylesheet" href="ruleta.css" />
+</head>
+
+<body class="ruleta">
+  <main class="scene">
+
+    <!-- IZQ: RUEDA -->
+    <section class="wheelArea" aria-label="Ruleta">
+      <div class="pointer" aria-hidden="true"></div>
+
+      <div class="wheel">
+        <svg id="wheelSvg" class="wheelSvg" viewBox="0 0 500 500" aria-label="Ruleta"></svg>
+      </div>
+
+      <button class="btn btn--red btn--spinTop" id="spinBtn" type="button">GIRAR</button>
+
+<div class="msg" id="msg">Selecciona ficha → apuesta → pulsa GIRAR.</div>
+
+<div class="wheelBtns">
+  <button class="btn btn--ghost" id="clearBtn" type="button">Borrar apuestas</button>
+  <button class="btn btn--ghost" id="backBtn" type="button">← volver</button>
+</div>
+
+      
+    </section>
+
+    <!-- DER: FICHAS + MESA -->
+    <section class="rightArea" aria-label="Apuestas">
+
+      <!-- FICHAS IMAGEN -->
+      <div class="chipsArea" aria-label="Fichas">
+        <button class="chipBtn is-active" data-chip="5" type="button" aria-label="Ficha 5">
+          <img src="../../../../assets/ficha5.png" alt="Ficha 5" />
+        </button>
+
+        <button class="chipBtn" data-chip="20" type="button" aria-label="Ficha 20">
+          <img src="../../../../assets/ficha20.png" alt="Ficha 20" />
+        </button>
+
+        <button class="chipBtn" data-chip="50" type="button" aria-label="Ficha 50">
+          <img src="../../../../assets/ficha50.png" alt="Ficha 50" />
+        </button>
+      </div>
+
+      <!-- HUD -->
+      <div class="hud" aria-label="Estado">
+        <div class="pill"><span>créditos:</span> <b id="credits">0</b></div>
+        <div class="pill"><span>objetivo:</span> <b id="goal">0</b></div>
+        <div class="pill"><span>apuesta:</span> <b id="totalBet">0</b></div>
+        <div class="pill"><span>ficha:</span> <b id="chipPicked">5</b></div>
+      </div>
+
+      <!-- MESA -->
+      <div class="table" id="table" aria-label="Mesa de apuestas">
+
+        <!-- 0 -->
+        <button class="cell cell--zero" data-bet="number:0" type="button">
+          <span class="label">0</span>
+          <span class="amt" id="amt-number-0"></span>
+        </button>
+
+        <div class="layout">
+
+          <!-- Outside SOLO -->
+          <div class="outside">
+            <button class="cell cell--outside cell--red" data-bet="red" type="button">
+              <span class="label">RED</span>
+              <span class="amt" id="amt-red"></span>
+            </button>
+
+            <button class="cell cell--outside cell--black" data-bet="black" type="button">
+              <span class="label">BLACK</span>
+              <span class="amt" id="amt-black"></span>
+            </button>
+
+            <button class="cell cell--outside" data-bet="low" type="button">
+              <span class="label">1-18</span>
+              <span class="amt" id="amt-low"></span>
+            </button>
+          </div>
+
+          <!-- números 1..36 -->
+          <div class="nums" id="nums"></div>
+
+        </div>
+
+      </div>
+
+      <p class="paytable">
+        Pagos: número <b>x36</b> · RED/BLACK <b>x2</b> · 1–18 <b>x2</b>
+      </p>
+
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+      <span id="toastMsg"></span>
+    </div>
+
+  </main>
+
+  <script src="ruleta.js"></script>
+</body>
+</html>

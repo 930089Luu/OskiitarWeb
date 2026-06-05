@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pista Número 3</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="pista3.css" />
+</head>
+
+<body class="pista1">
+  <main class="pista1__wrap" aria-label="Pista 1">
+
+    <!-- Sombrero arriba -->
+    <img class="pista1__hat" src="../../../../assets/sombrero.png" alt="" aria-hidden="true" />
+
+    <h1 class="pista1__title">Pista Número 3</h1>
+
+    <section class="pista1__card" aria-label="Texto pista">
+      <p id="pistaText" class="pista1__text" aria-live="polite"></p>
+    </section>
+
+    <form id="pistaForm" class="pista1__form" autocomplete="off">
+      <input
+        id="answerInput"
+        class="pista1__input"
+        type="text"
+        aria-label="Respuesta"
+      />
+      <p class="pista1__hint">Introducir el nombre de la tercera cancion</p>
+
+      <button type="button" id="backBtn" class="pista1__btn pista1__btn--ghost">← Volver</button>
+    </form>
+
+    <!-- Detective abajo izquierda -->
+    <img class="pista1__detective" src="../../../../assets/detectivePipa.png" alt="" aria-hidden="true" />
+
+    <!-- Huellas derecha -->
+    <img class="pista1__prints" src="../../../../assets/huellas.png" alt="" aria-hidden="true" />
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+      <span id="toastMsg"></span>
+    </div>
+
+  </main>
+
+  <script src="pista3.js"></script>
+</body>
+</html>

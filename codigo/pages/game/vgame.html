@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oscar Website - V.game</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <link rel="stylesheet" href="../../styles/vgame.css" />
+</head>
+
+<body class="vgame">
+  <!-- CABECERA (solo visible en la primera pantalla) -->
+  <header class="header">
+    <h1 class="site-title">Oscar Website</h1>
+
+    <div class="nav-wrap">
+      <div class="nav-line"></div>
+
+      <nav class="nav">
+        <a href="../../index.html">home</a>
+        <a class="active" href="vgame.html">V.game</a>
+        <a href="../gallery/gallery.html">gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="page">
+
+    <!-- PANTALLA V.GAME -->
+    <section class="v-screen" id="vScreen">
+      <div class="v-card">
+        <h2 class="v-title">The V.game</h2>
+        <p class="v-quote">“Some games are meant to be played together.”</p>
+        <button class="v-start" id="startBtn" type="button">START</button>
+      </div>
+    </section>
+
+    <!-- PANTALLA SOBRE -->
+    <section class="envelope-screen" id="envelopeScreen">
+
+      <div class="envelope" id="envelope">
+
+        <!-- Solapa superior -->
+        <div class="env-flap" aria-hidden="true"></div>
+        <div class="flap-open" aria-hidden="true"></div>
+
+        <!-- Cuerpo del sobre -->
+        <div class="envelope-inner">
+
+          <!-- Carta (sale y se arrastra) -->
+          <div class="letter" id="letter" aria-hidden="true">
+            <div class="letter-handle" id="letterHandle"></div>
+
+            <div class="letter-content">
+              <h3>Antes de empezar;</h3>
+
+              <p>
+                Este juego, por llamarlo así, consiste en una yincana con distintos niveles.
+                Cada nivel tiene un reto a superar: juegos, preguntas…
+              </p>
+
+              <p>
+                Al superarlos desbloquearás una pista para conseguir cada uno de tus regalos.
+                Pero no te ilusiones, no son regalos normales sino planes, ya lo entenderás.
+              </p>
+
+              <p>
+                En cada regalo vas a encontrar un QR de Spotify.
+                Introduce el nombre de la canción y desbloquearás el siguiente nivel.
+              </p>
+
+              <p class="letter-signature">
+                Besiiiss de fresiiss <br>
+                <strong>Oskk.</strong>
+              </p>
+
+              <div class="letter-actions">
+                <a class="letter-btn" href="../../index.html">Volver a Home</a>
+                <a class="letter-btn primary" href="level1/level1.html">Empezar</a>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Solapas laterales por delante -->
+          <div class="env-front" aria-hidden="true"></div>
+
+          <!-- Sello / botón abrir -->
+          <button class="heart-btn" id="openEnvelope" type="button" aria-label="Abrir">
+            <span>Abrir</span>
+          </button>
+
+        </div><!-- /envelope-inner -->
+
+      </div><!-- /envelope -->
+
+    </section>
+
+  </main>
+
+  <!-- FIRMA -->
+  <div class="signature">by Lucia</div>
+
+  <!-- JS -->
+  <script src="../../scripts/app.js"></script>
+</body>
+</html>

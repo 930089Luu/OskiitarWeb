@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oscar Website - Slot</title>
+  <link rel="stylesheet" href="slot.css" />
+</head>
+
+<body class="slot">
+  <main class="wrap">
+
+    <section class="machine" aria-label="Máquina casino">
+
+      <div class="crown" aria-hidden="true">
+        <div class="stars">
+          <span class="star s1">★</span><span class="star s2">★</span><span class="star s3">★</span><span class="star s4">★</span>
+          <span class="star s5">★</span><span class="star s6">★</span><span class="star s7">★</span><span class="star s8">★</span>
+        </div>
+
+        <div class="cardsTop">
+          <div class="pcard">A<span class="suit heart">♥</span></div>
+          <div class="pcard">A<span class="suit club">♣</span></div>
+          <div class="pcard">A<span class="suit spade">♠</span></div>
+          <div class="pcard">A<span class="suit diamond">♦</span></div>
+        </div>
+      </div>
+
+      <div class="marquee">
+        <div class="marquee__inner">Oskiitar Luci House</div>
+      </div>
+
+      <!-- STAGE: aquí va el marco como IMG -->
+      <div class="stage">
+        <img class="frameImg" src="../../../../assets/marco_slot.png" alt="Marco" />
+
+
+        <div class="cabinet">
+          <div class="window" role="group" aria-label="Rodillos">
+            <div class="window__inner">
+              <div class="reel"><div class="sym" id="sym0">♥</div></div>
+              <div class="reel"><div class="sym" id="sym1">♠</div></div>
+              <div class="reel"><div class="sym" id="sym2">♣</div></div>
+            </div>
+            <div class="window__gloss" aria-hidden="true"></div>
+          </div>
+
+          <div class="msg" id="msg">Pulsa TIRAR</div>
+
+          <div class="controls">
+            <button class="btn btn--ghost" id="backBtn" type="button">← volver</button>
+            <button class="btn btn--red" id="spinBtn" type="button">TIRAR</button>
+          </div>
+        </div>
+      </div>
+
+      <img class="suitsImg" src="../../../../assets/palos.png" alt="Palos" />
+
+    </section>
+
+  </main>
+
+  <script src="slot.js"></script>
+</body>
+</html>
