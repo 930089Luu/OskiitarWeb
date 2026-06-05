@@ -1,0 +1,248 @@
+/* ==========================================================
+   level2.css
+   Pantalla "Nivel 2"
+   Fondo tablero + marco ovalado + cartas CSS
+   (Nivel 2 = botón: óvalo + texto)
+   ========================================================== */
+
+   .level2{
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+  
+    /* tablero */
+    --sq: 160px;
+    --dark: #1a1a1a;
+    --light: #7a7a7a;
+  
+    background:
+      linear-gradient(45deg, var(--dark) 25%, transparent 25% 75%, var(--dark) 75%) 0 0/var(--sq) var(--sq),
+      linear-gradient(45deg, var(--dark) 25%, transparent 25% 75%, var(--dark) 75%) calc(var(--sq)/2) calc(var(--sq)/2)/var(--sq) var(--sq),
+      linear-gradient(45deg, var(--light) 25%, transparent 25% 75%, var(--light) 75%) calc(var(--sq)/2) 0/var(--sq) var(--sq),
+      linear-gradient(45deg, var(--light) 25%, transparent 25% 75%, var(--light) 75%) 0 calc(var(--sq)/2)/var(--sq) var(--sq);
+  }
+  
+  .level2__scene{
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+  
+  /* ==========================================================
+     PLACA CENTRAL
+     ========================================================== */
+  
+  .level2__plate{
+    position: relative;
+  
+    width: 90vw;
+    height: 30vw;
+  
+    max-width: 1400px;
+    max-height: 420px;
+  
+    min-height: 260px;
+  
+    display: grid;
+    place-items: center;
+  }
+  
+  /* BOTÓN OVALADO (blanco) */
+  .level2__inner-btn{
+    position: absolute;
+    left: 51%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  
+    width: 25%;
+    height: 30%;
+  
+    display: grid;
+    place-items: center;
+  
+    background: radial-gradient(
+      120% 140% at 50% 30%,
+      #ffffff 0%,
+      #eef2f7 60%,
+      #dfe6ef 100%
+    );
+  
+    border-radius: 999px;
+    box-shadow: 0 12px 26px rgba(0,0,0,.22);
+  
+    text-decoration: none;
+    cursor: pointer;
+  
+    z-index: 2;
+  
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  
+  .level2__inner-btn:hover{
+    box-shadow: 0 18px 34px rgba(0,0,0,.28);
+  }
+  
+  .level2__inner-btn:active{
+    box-shadow: 0 10px 18px rgba(0,0,0,.28);
+  }
+  
+  /* Marco PNG (solo visual, no bloquea clicks) */
+  .level2__frame{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 3;
+    filter: drop-shadow(0 16px 30px rgba(0,0,0,.28));
+    pointer-events: none;
+  }
+  
+  /* Texto */
+  .level2__title{
+    position: relative;
+    transform: translate(7px, 1px); /* X , Y */
+  
+    font-family: "Georgia","Times New Roman",serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(46px, 5vw, 70px);
+    color: rgba(15,15,15,.95);
+    text-shadow: 0 2px 0 rgba(255,255,255,.6);
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  /* ==========================================================
+     CARTAS (CSS)
+     ========================================================== */
+  
+  .level2__cards{
+    position: absolute;
+    right: clamp(18px, 4vw, 72px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 340px;
+    height: 560px;
+    pointer-events: none;
+  }
+  
+  /* Carta base */
+  .card{
+    position: absolute;
+    width: 120px;
+    aspect-ratio: 2.5 / 3.5;
+    border-radius: 12px;
+    background: linear-gradient(#fff, #f4f6fb);
+    border: 1px solid rgba(0,0,0,.14);
+    box-shadow: 0 18px 30px rgba(0,0,0,.35);
+    overflow: hidden;
+    will-change: transform, translate;
+  }
+  
+  /* marco interior */
+  .card::before{
+    content:"";
+    position: absolute;
+    inset: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.08);
+  }
+  
+  /* esquinas */
+  .corner{
+    position: absolute;
+    display: grid;
+    gap: 2px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    padding: 10px;
+  }
+  
+  .corner .suit{
+    font-size: 18px;
+  }
+  
+  .corner.top{
+    top: 0;
+    left: 0;
+  }
+  
+  .corner.bottom{
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+  }
+  
+  /* centro */
+  .center{
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 72px;
+    opacity: .9;
+  }
+  
+  /* palos */
+  .heart, .diamond{ color: #d62b2b; }
+  .spade, .club{ color: #111; }
+  
+  /* posiciones */
+  .card--1{
+    left: 40px;
+    top: 20px;
+    transform: rotate(-26deg);
+    animation: floaty 2.8s ease-in-out infinite;
+  }
+  .card--2{
+    left: 170px;
+    top: 160px;
+    transform: rotate(16deg);
+    animation: floaty 3s ease-in-out infinite;
+    animation-delay: .15s;
+  }
+  .card--3{
+    left: 90px;
+    top: 330px;
+    transform: rotate(62deg);
+    animation: floaty 2.6s ease-in-out infinite;
+    animation-delay: .25s;
+  }
+  .card--4{
+    left: 200px;
+    top: 430px;
+    transform: rotate(22deg);
+    animation: floaty 3.2s ease-in-out infinite;
+    animation-delay: .05s;
+  }
+  
+  /* flotación */
+  @keyframes floaty{
+    0%,100%{ translate: 0 0; }
+    50%{ translate: 0 -10px; }
+  }
+  
+  /* ==========================================================
+     BOTÓN VOLVER
+     ========================================================== */
+  
+  .level2__back{
+    position: fixed;
+    left: 20px;
+    bottom: 18px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.8);
+    color: rgba(0,0,0,.85);
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,.12);
+    backdrop-filter: blur(6px);
+  }
+  
+  .level2__back:hover{
+    background: rgba(255,255,255,.95);
+  }
+  

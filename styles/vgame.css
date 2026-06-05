@@ -1,0 +1,351 @@
+/* ==========================================================
+   V.GAME – FONDO BLUR
+   ========================================================== */
+   body.vgame::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:url("../assets/bg.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    filter:blur(8px);
+    transform:scale(1.03);
+    z-index:1;
+    pointer-events:none;
+  }
+  
+  /* ==========================================================
+     PANTALLAS
+     ========================================================== */
+  .v-screen{ display:grid; place-items:center; }
+  .envelope-screen{ display:none; place-items:center; }
+  
+  body.show-envelope .v-screen{ display:none; }
+  body.show-envelope .envelope-screen{ display:grid; }
+  
+  body.show-envelope .header,
+  body.show-envelope .signature{ display:none; }
+  
+  /* ==========================================================
+     CUADRO CENTRAL V.GAME
+     ========================================================== */
+  .v-card{
+    width:min(820px,84vw);
+    height:240px;
+    border:2px solid rgba(0,0,0,0.65);
+    background:rgba(255,255,255,0.02);
+    display:grid;
+    place-items:center;
+    text-align:center;
+    padding:22px;
+    z-index:5;
+  }
+  
+  .v-title{
+    margin:0;
+    font-family:"Great Vibes", cursive;
+    font-size:58px;
+    font-weight:400;
+    color:rgba(10,10,10,0.85);
+    line-height:1;
+  }
+  
+  .v-quote{
+    margin:6px 0 14px 0;
+    font-style:italic;
+    letter-spacing:4px;
+    font-size:16px;
+    color:rgba(219,121,157,0.758);
+  }
+  
+  .v-start{
+    border:none;
+    cursor:pointer;
+    padding:10px 26px;
+    border-radius:999px;
+    background:rgba(165,72,67,0.95);
+    color:rgba(255,255,255,0.92);
+    font-weight:700;
+    letter-spacing:3px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.18);
+    transition:transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+  }
+  .v-start:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px rgba(0,0,0,0.22);
+    filter:brightness(1.03);
+  }
+  
+  /* ==========================================================
+     SOBRE (estructura)
+     ========================================================== */
+  .envelope{
+    width:min(760px,88vw);
+    height:min(420px,56vh);
+    position:relative;
+    transform:translateY(220px);
+    z-index:5;
+  }
+  
+  /* Cuerpo del sobre (rectángulo) */
+  .envelope-inner{
+    position:absolute;
+    inset:0;
+    background:#eee8dc;
+    box-shadow:0 12px 32px rgba(0,0,0,0.18);
+    overflow:visible; /* CLAVE: la carta nace "dentro" */
+  }
+  
+  /* ==========================================================
+     SOLAPA SUPERIOR
+     - .env-flap: la solapa "cerrada" (rota al abrir)
+     - .flap-open: triangulito visible arriba cuando está abierto
+     ========================================================== */
+  
+  /* solapa cerrada */
+  .env-flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:55%;
+    background:#ead6b8;
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    transform-origin:50% 0%;
+    transform:rotateX(0deg);
+    transition:transform 420ms ease;
+    z-index:6; /* por encima del cuerpo cuando está cerrada */
+    pointer-events:none;
+  }
+  
+  /* al abrir, la solapa "se va" hacia atrás y baja de capa */
+  .envelope.is-open .env-flap{
+    transform:rotateX(180deg);
+    z-index:2; /* detrás de la carta */
+  }
+  
+  /* triangulito de "solapa abierta" (solo se ve cuando está abierto) */
+  .flap-open{
+    display:none;
+    position:absolute;
+    left:50%;
+    top:-58px;                 /* ajusta altura del pico */
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:420px solid transparent;
+    border-right:340px solid transparent;
+    border-bottom:140px solid #ead6b8;
+    z-index:3;                 /* por encima del fondo pero debajo de front-flaps */
+    pointer-events:none;
+  }
+  .envelope.is-open .flap-open{ display:block; }
+  
+  /* ==========================================================
+     SOLAPAS LATERALES (front, por encima de carta)
+     ========================================================== */
+  .env-front{
+    position:absolute;
+    inset:0;
+    z-index:7;
+    pointer-events:none;
+  }
+  
+  .env-front::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:52%;
+    width:50%;
+    height:48%;
+    background:#efe6d8;
+    clip-path:polygon(0 0, 100% 100%, 0 100%);
+  }
+  .env-front::after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:52%;
+    width:50%;
+    height:48%;
+    background:#efe6d8;
+    clip-path:polygon(100% 0, 100% 100%, 0 100%);
+  }
+  
+  /* ==========================================================
+     CARTA (sale desde dentro)
+     - se controla con variable CSS --letterY
+     ========================================================== */
+  .letter{
+    --letterY: 34px; /* estado cerrado (dentro) */
+    position:absolute;
+    left:50%;
+    bottom:70px;
+    width:min(520px,76vw);
+    height:min(520px,70vh);
+    transform:translate(-50%, var(--letterY));
+    opacity:0;
+    pointer-events:none;
+  
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.20);
+    z-index:5;
+    transition:transform 380ms ease, opacity 200ms ease;
+    display:grid;
+    grid-template-rows:24px 1fr;
+    overflow:hidden;
+  }
+  
+  /* al abrir asoma un poco */
+  .envelope.is-open .letter{
+    --letterY: 160px; /* asoma */
+    opacity:1;
+    pointer-events:auto;
+  }
+  
+  .letter-handle{
+    width:70px;
+    height:6px;
+    border-radius:999px;
+    background:rgba(0,0,0,0.18);
+    margin:10px auto 0 auto;
+  }
+  
+  .letter-content{
+    padding:18px 18px 20px 18px;
+    font-family:"Times New Roman", Georgia, serif;
+    color:rgba(20,20,20,0.85);
+  }
+  .letter-content h3{
+    margin:6px 0 10px 0;
+    font-size:22px;
+  }
+  .letter-content p{
+    margin:0 0 10px 0;
+    line-height:1.4;
+  }
+  
+  .letter-actions{
+    display:flex;
+    gap:12px;
+    margin-top:14px;
+  }
+  
+  .letter-btn{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:999px;
+    background:rgba(120,120,120,0.18);
+    text-decoration:none;
+    color:rgba(20,20,20,0.85);
+    font-weight:600;
+  }
+  .letter-btn.primary{
+    background:rgba(165,72,67,0.95);
+    color:rgba(255,255,255,0.95);
+  }
+  
+  /* ==========================================================
+     SELLO CORAZÓN
+     ========================================================== */
+  .heart-btn{
+    position:absolute;
+    top:55%;
+    left:50%;
+    width:86px;
+    height:86px;
+    transform:translate(-50%, -50%) rotate(-45deg);
+    background:#a34740;
+    border:none;
+    cursor:pointer;
+    z-index:8;
+    padding:0;
+    overflow:visible;
+  }
+  
+  .heart-btn::before,
+  .heart-btn::after{
+    content:"";
+    position:absolute;
+    width:86px;
+    height:86px;
+    background:#a34740;
+    border-radius:50%;
+    z-index:0;
+  }
+  .heart-btn::before{ top:-43px; left:0; }
+  .heart-btn::after{ top:0; left:43px; }
+  
+  .heart-btn span{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%) rotate(45deg);
+    color:rgba(255,255,255,0.95);
+    font-size:16px;
+    font-family:"Times New Roman", Georgia, serif;
+    font-weight:600;
+    pointer-events:none;
+    z-index:2;
+  }
+  
+  .envelope.is-open .heart-btn{
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 200ms ease;
+  }
+  /* =========================
+   FIX TRIANGULITO / DOBLE SOLAPA
+   ========================= */
+
+/* 3D real para el giro */
+.envelope{
+  perspective: 1000px;
+}
+
+/* mejora el giro y evita ver la “cara trasera” rara */
+.env-flap{
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* cuando está abierto: NO queremos ver env-flap + flap-open a la vez */
+.envelope.is-open .env-flap{
+  transform: rotateX(180deg);
+  opacity: 0;                 /* <- CLAVE: mata la duplicación visual */
+  transition: transform 420ms ease, opacity 160ms ease;
+}
+
+/* tu flap-open está bien, pero lo dejamos bien “encima” */
+.flap-open{
+  transform: translateX(-50%) translateY(-80px);                 /* debajo de la carta si quieres que la carta pase por encima */
+}
+
+/* (Opcional) por si quedaba un pixel de unión entre shapes */
+.envelope-inner{
+  background:#eee8dc;
+}
+
+/* =========================
+   AJUSTE BOTONES CARTA
+   ========================= */
+
+   .letter-actions{
+    display:flex;
+    justify-content:center;   /* centrados */
+    gap:18px;                 /* más aire entre botones */
+    margin-top:22px;
+  }
+  
+  /* Firma final */
+  .letter-signature{
+    margin-top:18px;
+    text-align:center;
+    font-style:italic;
+    color:rgba(120,80,90,0.85);
+  }
+  
+  
+  

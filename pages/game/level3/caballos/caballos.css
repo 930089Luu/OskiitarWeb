@@ -1,0 +1,150 @@
+.level3 {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+  
+    background-color: #0a0a0a;
+    background-image:
+      linear-gradient(45deg, #444444 25%, transparent 25%),
+      linear-gradient(-45deg, #444444 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #444 75%),
+      linear-gradient(-45deg, transparent 75%, #444 75%);
+    background-size: 100px 100px;
+    background-position: 0 0, 0 50px, 50px -50px, -50px 0px;
+  }
+  
+  .race-container {
+    margin-top: 80px;
+  }
+  
+  .lane {
+    position: relative;
+    height: 150px;
+    margin: 30px 50px;
+    overflow: hidden;
+    border-radius: 10px;
+  
+    /* IMAGEN DE HIERBA */
+    background-image: url("../../../../assets/fondocaballos.png");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .horse {
+    position: absolute;
+    left: 20px;
+    bottom: 1px;
+    height: 120px;
+  }
+  
+  .bet-panel {
+    background: #1e1e1e;
+    width: 85%;
+    height: 70%;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+  }
+  
+  
+  .bet-panel h2 {
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-size: 26px;
+  }
+  
+  .bet-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+  }
+  
+  .bet-buttons button {
+    padding: 18px 30px;   /* 🔥 más pequeños */
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;     /* 🔥 texto más pequeño */
+    cursor: pointer;
+    background: #b8443f;
+    color: white;
+    transition: 0.2s;
+  }
+  
+  
+  .bet-buttons button:hover {
+    background: #d9534f;
+    transform: scale(1.05);
+    
+  }
+  
+  
+  .back-btn {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    background: #555;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: 0.2s;
+  }
+  
+  .back-btn:hover {
+    background: #777;
+  }
+
+  .bet-frame {
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-40%);
+    width: 750px;
+    z-index: 100;
+  }
+  
+  .marco-img {
+    position: absolute;
+    width: 95%;
+    height: 190%;
+    object-fit: fill;
+    z-index: 2;
+    pointer-events: none;
+    transform: translateX(-5%);
+  
+    top: -40px;   /* 🔥 mueve el marco hacia arriba */
+  }
+  
+  
+  .bet-panel {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+  }
+  
+  .bet-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .result-message {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e1e1e;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    display: none;
+    z-index: 500;
+  }
+  
